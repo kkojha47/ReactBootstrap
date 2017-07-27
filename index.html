@@ -17,10 +17,39 @@
 <script type="text/babel">   
         //App component
             var App= React.createClass({
+                 
+                getInitialState: function(){
+                    return{
+                        page:"home"
+                    }
+                }, 
+                
+                HandleHomeClick: function(){
+                    this.setState({
+                        page: "home"
+                    })
+                },
+                
+                HandleAboutClick: function(){
+                    this.setState({
+                        page: "about"
+                    })
+                },
+
+                HandleContactClick: function(){
+                    this.setState({
+                        page:"contact"
+                    })
+                },
+
                 render: function(){
                     return(
                         <div>
-                          <Navbar color="hello" />
+                          <Navbar color="hello"
+                                  page={this.state.page}
+                                  homeClick={this.HandleHomeClick}
+                                  aboutClick={this.HandleAboutClick}
+                                  contactClick={this.HandleContactClick} />
                           <Jumbotron />
                           <Pagehome />
                           <Footer />
@@ -40,6 +69,7 @@
                        brand: "My Website"
                    }
                },
+
                 render: function() {
                    if(this.props.color=="light"){
                        var navClass= "navbar navbar-default";
@@ -47,6 +77,21 @@
                    else{
                         var navClass= "navbar navbar-inverse";
                    } 
+
+                   var homeActive="";
+                   var aboutActive="";
+                   var contactActive="";
+
+                   if(this.props.page=="home"){
+                       homeActive='active';
+                   }
+                   else if(this.props.page=="about"){
+                       aboutActive='active';
+                   }
+                   else if(this.props.page=="contact"){
+                       contactActive='active';
+                   }
+
                     return(<div>
                                <nav className={navClass}>
                                     <div className="container-fluid">
@@ -61,9 +106,9 @@
                                     </div>
                                     <div id="navbar" className="navbar-collapse collapse">
                                         <ul className="nav navbar-nav">
-                                        <li><a onClick={this.props.homeClick} href="#">Home</a></li>
-                                        <li><a onClick={this.props.aboutClick} href="#">About</a></li>
-                                        <li><a onClick={this.props.contactClick} href="#">Contact</a></li>
+                                        <li><a onClick={this.props.homeClick} className={homeActive} href="#">Home</a></li>
+                                        <li><a onClick={this.props.aboutClick} className={aboutActive} href="#">About</a></li>
+                                        <li><a onClick={this.props.contactClick} className={contactActive} href="#">Contact</a></li>
                                         </ul>
                                     </div>
                                     </div>
@@ -84,7 +129,7 @@
             
                 getDefaultProps: function(){
                     return{
-                        text: "lorem Ipsum dolor ismut KK Is Going to be a billionaire. U just watch bitches.",
+                        text: " Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta amet ipsam, odio facere minima temporibus quam tempora nulla sed rem fuga consequuntur molestieligendi provident laudantium blanditiis delectus totam recusandae",
                         title: "Welcome to KK's Website",
                         link: "http://google.com"
                     }
