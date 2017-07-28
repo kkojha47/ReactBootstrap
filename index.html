@@ -46,12 +46,15 @@
                 render: function(){
                    if(this.state.page=="home"){
                        var jumbotron= <Jumbotron />
+                        var page=<Pagehome />;
                    } 
                    else if(this.state.page=="about"){
                        var jumbotron="";
+                       var page= <Pageabout />;
                    } 
                    else if(this.state.page=="contact"){
                        var jumbotron="";
+                        var page=<Pagecontact/>;
                    } 
 
                     return(
@@ -62,7 +65,7 @@
                                   aboutClick={this.HandleAboutClick}
                                   contactClick={this.HandleContactClick} />
                           {jumbotron}
-                          <Pagehome />
+                          {page}
                           <Footer />
                         </div>
                     )
@@ -164,6 +167,26 @@
                 render: function(){
                     return(<div className="row marketing">
                              Main Content
+                           </div>)
+                      
+                }
+            });
+
+            //AboutPage component
+            var Pageabout= React.createClass({
+                render: function(){
+                    return(<div className="row marketing">
+                             About Content
+                           </div>)
+                      
+                }
+            });
+
+            //ContactPage component
+            var Pagecontact= React.createClass({
+                render: function(){
+                    return(<div className="row">
+                             Contact Details Content
                            </div>)
                       
                 }
